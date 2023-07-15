@@ -29,7 +29,7 @@ function swapSlice(block1, block2) {
       var randomMove = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
       moveSlice(randomMove);
       moveCount = 0;
-      
+
     
     }
   
