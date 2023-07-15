@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="game.css">
+
+       
+    
+</head>
+<body>
+    <script src="game.js"></script>
+    <div>
+        <p id="heading">15 puzzle</p>
+    <table>
+        <tr id="row1">
+        <th id="block11"  class="slice slice1" onclick="clickSlice(1,1)"></th>
+        <th id="block12" class="slice slice2" onclick="clickSlice(1,2)"></th>
+        <th id="block13" class="slice slice3" onclick="clickSlice(1,3)"></th>
+        <th id="block14" class="slice slice4" onclick="clickSlice(1,4)"></th>
+        </tr>
+         
+        <tr id="row2">
+        <th id="block21" class="slice slice5" onclick="clickSlice(2,1)"></th>
+        <th id="block22" class="slice slice6" onclick="clickSlice(2,2)"></th>
+        <th id="block23" class="slice slice7" onclick="clickSlice(2,3)"></th>
+        <th id="block24" class="slice slice8" onclick="clickSlice(2,4)"></th>
+        </tr>
+            
+        <tr id="row3">
+        <th id="block31" class="slice slice9" onclick="clickSlice(3,1)"></th>
+        <th id="block32" class="slice slice10" onclick="clickSlice(3,2)"></th>
+        <th id="block33" class="slice slice11" onclick="clickSlice(3,3)"></th>
+        <th id="block34" class="slice slice12" onclick="clickSlice(3,4)"></th>
+        </tr>
+            
+        <tr id="row4">
+        <th id="block41" class="slice slice13" onclick="clickSlice(4,1)"></th>
+        <th id="block42" class="slice slice14" onclick="clickSlice(4,2)"></th>
+        <th id="block43" class="slice slice15" onclick="clickSlice(4,3)"></th>
+        <th id="block44" class="slice slice16" onclick="clickSlice(4,4)"></th>
+        </tr>
+       
+             </table>
+             <button class="gbutton" onclick=shuffle()>new game</button>
+</div>
+   
+
+</body>
+</html>
