@@ -1,5 +1,45 @@
 var moveCount=0;
+var timeInterval;
+var seconds=0;
 
+var startTime; // to keep track of the start time
+var stopwatchInterval; // to keep track of the interval
+var elapsedPausedTime = 0; // to keep track of the elapsed time while stopped
+
+function startStopwatch() {
+  if (!stopwatchInterval) {
+    startTime = new Date().getTime() - elapsedPausedTime; // get the starting time by subtracting the elapsed paused time from the current time
+    stopwatchInterval = setInterval(updateStopwatch, 1000); // update every second
+  }
+}
+
+function stopStopwatch() {
+  clearInterval(stopwatchInterval); // stop the interval
+  elapsedPausedTime = new Date().getTime() - startTime; // calculate elapsed paused time
+  stopwatchInterval = null; // reset the interval variable
+}
+
+function resetStopwatch() {
+  stopStopwatch(); // stop the interval
+  elapsedPausedTime = 0; // reset the elapsed paused time variable
+  document.getElementById("stopwatch").innerHTML = "00:00"; // reset the display
+}
+
+function updateStopwatch() {
+  var currentTime = new Date().getTime(); // get current time in milliseconds
+  var elapsedTime = currentTime - startTime; // calculate elapsed time in milliseconds
+  
+  var seconds = Math.floor(elapsedTime / 1000) % 60; // calculate seconds
+  var minutes = Math.floor(elapsedTime / 1000 / 60) % 60; // calculate minutes
+ // var hours = Math.floor(elapsedTime / 1000 / 60 / 60); // calculate hours
+  var displayTime = pad(minutes) + ":" + pad(seconds); // format display time
+  document.getElementById("stopwatch").innerHTML = displayTime; // update the display
+}
+
+function pad(number) {
+  // add a leading zero if the number is less than 10
+  return (number < 10 ? "0" : "") + number;
+}
 function swapSlice(block1, block2) {
     var tempClass = document.getElementById(block1).className;
     var tempHTML = document.getElementById(block1).innerHTML;
@@ -11,10 +51,10 @@ function swapSlice(block1, block2) {
     document.getElementById(block2).innerHTML = tempHTML;
     moveCount++;
     updateMoveCount();
+    startStopwatch();
   }
   function shuffle() {
      
-    
     for (var i = 0; i < 100; i++) {
       var emptySlice = document.getElementsByClassName("slice16")[0];
       var emptyRow = parseInt(emptySlice.id.charAt(5));
@@ -29,12 +69,13 @@ function swapSlice(block1, block2) {
       var randomMove = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
       moveSlice(randomMove);
       moveCount = 0;
-
-    
+      updateMoveCount();
     }
   
     console.log(moveCount + " random moves performed.");
+    resetStopwatch();
   }
+      
   
          function handleMouseEvents() {
     var slices = document.getElementsByClassName("slice");
@@ -54,6 +95,7 @@ function swapSlice(block1, block2) {
   function clickSlice(row, column) {
     var block = document.getElementById("block" + row + column);
     var slice = block.className;
+    
   
     if (slice !== "slice slice16") {
       // Checking if white slice is on the right
@@ -84,6 +126,7 @@ function swapSlice(block1, block2) {
           return;
         }
       }
+      
     }
   }
   
